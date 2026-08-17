@@ -227,7 +227,7 @@ public class WlanFragment extends Fragment {
     public void setEnableMonitorMode(){
         activity.runOnUiThread(() -> {
             commands = new ArrayList<>();
-            commands.add("ip link set $ifc down;echo '4' > /sys/module/wlan/parameters/con_mode;ip link set $ifc up");
+            commands.add("ip link set $ifc down;echo '4' > /sys/module/qca6490/parameters/con_mode;ip link set $ifc up");
             commands.add("ip link set $ifc down;iw dev $ifc set type monitor;ip link set $ifc up");
             ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, commands);
             adapter.getFilter().filter(null);
@@ -254,7 +254,7 @@ public class WlanFragment extends Fragment {
     public void setDisableMonitorMode(){
         activity.runOnUiThread(() -> {
         commands = new ArrayList<>();
-        commands.add("ip link set $ifc down;echo '0' > /sys/module/wlan/parameters/con_mode;ip link set $ifc up;svc wifi enable");
+        commands.add("ip link set $ifc down;echo '0' > /sys/module/qca6490/parameters/con_mode;ip link set $ifc up;svc wifi enable");
         commands.add("ip link set $ifc down;iw dev $ifc set type managed;ip link set $ifc up");
         ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, commands);
         adapter.getFilter().filter(null);
