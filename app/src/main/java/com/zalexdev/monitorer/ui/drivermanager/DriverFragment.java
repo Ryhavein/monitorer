@@ -139,7 +139,7 @@ public class DriverFragment extends Fragment {
         // Getting the driver list and setting up the recycler view.
         new Thread(() -> {
             ArrayList<String> pathList = customCommand("ls /sys/bus/usb/drivers");
-            ArrayList<String> driverList1 = customCommand("ls /system/lib/modules/");
+            ArrayList<String> driverList1 = customCommand("ls /sdcard/driver/");
             if (!pathList.isEmpty() && !contains(pathList,"not rooted") && !contains(pathList,"no such") && !contains(pathList,"Permission")){
                 Log.e("DriverFragment", pathList + " " + driverList1);
 
@@ -193,7 +193,7 @@ public class DriverFragment extends Fragment {
         isOtgOk = context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_USB_HOST);
         isAndroidOk = android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
         isRootOk = execCmdBoolean("");
-        isMonModeAvailable = execCmdBoolean("ls /sys/module/wlan/parameters/con_mode");
+        isMonModeAvailable = execCmdBoolean("ls /sys/module/qca6490/parameters/con_mode");
         isModulesAvailable = execCmdBoolean("ls /proc/modules");
         dList = getDriverList();
     }
